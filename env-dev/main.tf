@@ -1,5 +1,5 @@
 resource "aws_lb" "frontend" {
-  name               = "frontend"
+  name               = "frontend-${var.ENV}"
   internal           = false
   load_balancer_type = "application"
   enable_deletion_protection = false
@@ -12,7 +12,7 @@ resource "aws_lb" "frontend" {
 }
 
 resource "aws_lb" "backend" {
-  name               = "backend"
+  name               = "backend-${var.ENV}"
   internal           = false
   load_balancer_type = "application"
   enable_deletion_protection = false
