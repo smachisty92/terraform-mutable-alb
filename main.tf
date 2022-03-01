@@ -19,7 +19,7 @@ module "tags" {
   source = "git::https://github.com/smachisty92/terraform-tags"
   TAG_NAME = lookup(element(local.ALL_TAGS,count.index), "name")
   TAG_VALUE= lookup(element(local.ALL_TAGS,count.index), "value")
-  RESOURCE_ID = aws_lb.frontend.id
+  RESOURCE_ID = [aws_lb.frontend.id]
 }
 locals {
   ALL_TAGS= [
