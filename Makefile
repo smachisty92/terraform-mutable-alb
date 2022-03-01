@@ -3,14 +3,22 @@ help:
 
 
 dev dev-apply:
-	@cd env-dev && rm -rf .terraform && terraform init && terraform apply -auto-approve
+	rm -rf .terraform
+	terraform init -backend-config=env-dev/backend.tfvars
+	terraform apply -auto-approve -var-file=env-dev/main.tfvars
 
 prod prod-apply:
-	@cd env-prod && rm -rf .terraform && terraform init && terraform apply -auto-approve
+	rm -rf .terraform
+	terraform init -backend-config=env-dev/backend.tfvars
+	terraform apply -auto-approve -var-file=env-prod/main.tfvars
 
 
 dev-destroy:
-	@cd env-dev && rm -rf .terraform && terraform init && terraform destroy -auto-approve
+	rm -rf .terraform
+	terraform init -backend-config=env-dev/backend.tfvars
+	terraform destroy -auto-approve -var-file=env-dev/main.tfvars
 
 prod-destroy:
-	@cd env-prod && rm -rf .terraform && terrafo	rm init && terraform destroy -auto-approve
+	rm -rf .terraform
+	terraform init -backend-config=env-dev/backend.tfvars
+	terraform destroy -auto-approve -var-file=env-prod/main.tfvars
